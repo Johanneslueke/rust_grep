@@ -1,6 +1,6 @@
-
+use std::env;
 
 fn main() {
-    let name = "VS Code Remote - Containers";
-    println!("Hello, {}!", name);
+    let args : Vec<String> = env::args().collect();
+    println!("{:?}", args);
 }
