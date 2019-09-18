@@ -4,12 +4,10 @@ use std::error::Error;
 
 pub fn run(config : Config) -> Result<(),Box<dyn Error>>{
     let contents = fs::read_to_string(&config.filename).expect("something went wrong");
-                      
-
-    println!("Searching for {:?}", &config.query);
-    println!("In file {:?}", &config.filename);
-   
-    println!("With content: \n {}", contents);
+    
+    for line in search(&config.query, &contents){
+        println!("{}",line);
+    }
 
     Ok(())
 }
@@ -34,7 +32,15 @@ impl Config{
 }
 
 fn search<'a>(query: &str, content: &'a str) -> Vec<&'a str> {
-    vec![]
+    let mut results = Vec::new();
+
+    for line in content.lines(){
+        if line.contains(query){
+            results.push(line)
+        }
+    }
+
+    results
 }
 
 
@@ -47,9 +53,9 @@ mod tests{
         let query = "duct";
 
         let contents ="\
-        Rust:
-        safe, fast, productive.
-        Pick three.";
+Rust:
+safe, fast, productive.
+Pick three.";
 
         assert_eq!(
             vec!["safe, fast, productive."],
