@@ -1,5 +1,5 @@
 [package]
-name = "hello_remote_world"
+name = "grep"
 version = "0.1.0"
 authors = ["Johannes Lüke <lueke.johannes@gmail.com>"]
 
