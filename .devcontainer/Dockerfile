@@ -23,6 +23,9 @@ RUN apt-get update \
     # Install other dependencies
     && apt-get install -y lldb \
     #
+    # Install git flow
+    && apt-get install -y git-flow  \
+    #
     # Install Rust components
     && rustup update \
     && rustup component add rls rust-analysis rust-src rustfmt clippy \
