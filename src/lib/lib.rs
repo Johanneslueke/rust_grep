@@ -2,7 +2,7 @@ use std::fs;
 use std::error::Error;
 
 
-fn run(config : Config) -> Result<(),Box<dyn Error>>{
+pub fn run(config : Config) -> Result<(),Box<dyn Error>>{
     let contents = fs::read_to_string(&config.filename).expect("something went wrong");
                       
 
@@ -14,13 +14,13 @@ fn run(config : Config) -> Result<(),Box<dyn Error>>{
     Ok(())
 }
 
-struct Config{
+pub struct Config{
     pub query : String,
     pub filename : String,
 }
 
 impl Config{
-    fn new(args: &[String]) -> Result<Config, &'static str> {
+    pub fn new(args: &[String]) -> Result<Config, &'static str> {
 
         if args.len() < 3 {
             return Err("not enough arguments");
