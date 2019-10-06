@@ -4,5 +4,6 @@ version = "0.1.0"
 authors = ["Johannes Lüke <lueke.johannes@gmail.com>"]
 
 [lib]
-path ="./src/lib/lib.rs"
+path = "./src/lib/lib.rs"
+name = "rust_grep"
 

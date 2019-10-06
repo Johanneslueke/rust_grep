@@ -1,6 +1,21 @@
+use std::env;
+use std::process;
 
+extern crate rust_grep;
+use rust_grep::Config;
 
 fn main() {
-    let name = "VS Code Remote - Containers";
-    println!("Hello, {}!", name);
+
+    let config = Config::new(env::args()).unwrap_or_else( | err | {
+        eprintln!("Problem parsing arguments {}", err);
+        process::exit(1);
+    });
+    
+    if let Err(e) = rust_grep::run(config){
+        eprintln!("Application error: {}", e);
+        process::exit(1);
+    };
 }
+
+
+
